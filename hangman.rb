@@ -31,29 +31,6 @@ class Hangman
 		@dictionary
 	end
 
-	#returns the secret
-	def peek
-		@secret_save
-	end
-
-	#returns the drawing
-	def drawing
-		@drawing
-	end
-
-	#prints the 'game board' to the console
-	def look
-		#This is for the animation
-		lines = []
-		lines << "#{@fill_in_word}"
-		lines << ""
-		lines << "incorrect letters: #{@bad_guesses.join(", ")}"
-		lines << ""
-		lines << "turn: #{@turns}"
-		lines << ""
-		lines << "bad guesses left: #{@guesses}"
-	end
-
 	#Prompts a user for a guess
 	#uses the guess to move game forward
 	def guess_letter(guess)
