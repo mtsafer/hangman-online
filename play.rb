@@ -63,7 +63,9 @@ end
 game = new_game
 
 get "/" do
-	game.guess_letter(params["guess"])
+	guess = params["guess"]
+	guess.downcase! if guess
+	game.guess_letter(guess)
 	word = game.fill_in_word
 	bad_guesses = game.bad_guesses.join(", ")
 	turns_left = game.guesses
