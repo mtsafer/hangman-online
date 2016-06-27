@@ -15,8 +15,10 @@
 		<div class="container">
 			<% if game.won? %>
 				<h1>YATAA! You won!!</h1>
+				<h3><%=game.peek%></h3>
 			<%elsif game.ended?%>
 				<h1>Booo, yah lost!</h1>
+				<h3><%=game.peek%></h3>
 			<%end%>
 			<h2><%=word%></h2>
 			<form>

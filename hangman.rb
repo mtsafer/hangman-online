@@ -31,6 +31,10 @@ class Hangman
 		@dictionary
 	end
 
+	def peek
+		@secret_save
+	end
+
 	#Prompts a user for a guess
 	#uses the guess to move game forward
 	def guess_letter(guess)
