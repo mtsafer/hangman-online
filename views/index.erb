@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hangman</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body>
+	<div class="header">
+		<div class="container">
+			<h3>Hangman</p>
+		</div>
+	</div>
+	<div class="main">
+		<div class="container">
+			<% if game.won? %>
+				<h1>YATAA! You won!!</h1>
+			<%elsif game.ended?%>
+				<h1>Booo, yah lost!</h1>
+			<%end%>
+			<h2><%=word%></h2>
+			<form>
+				<input type="text" name="guess"/>
+				<input type="submit" value="Guess!"/>
+			</form>
+			<h3>You have <%=turns_left%> guesses left</h3>
+			<% if bad_guesses.length > 0 %>
+				<h4>Bad guesses: <%=bad_guesses%></h4>
+			<% end %>
+			<a href="<%= url("/save")%>" class="btn btn-primary">Save</a>
+			<a href="<%= url("/load")%>" class="btn btn-primary">Load</a>
+			<a href="<%= url("/new_game")%>" class="btn btn-primary">Restart</a>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Load Hangman</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body>
+	<div class="header">
+		<div class="container">
+			<h1>Choose a game to load</h1>
+		</div>
+	</div>
+	<div class="main">
+		<div class="container">
+			<% saves.each do |s| %>
+				<a href="<%= url("/load/" + s)%>" class="btn btn-primary"><%=s%></a>
+			<% end %>
+		</div>
+	</div>
+</body>
+</html>
