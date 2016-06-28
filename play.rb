@@ -2,12 +2,13 @@ require 'sinatra'
 require 'sinatra/reloader' if development?
 require_relative './hangman'
 require 'yaml'
-private
+
+use Rack::Session::Pool, :expire_after => 2592000
 
 private
 	#saves a game to ./saves
 	def save(game)
-		save_name = game.fill_in_word
+		save_name = game.fill_in_word + " (#{session[:game].guesses})"
 		Dir.mkdir "saves" unless Dir.exists? "saves"
 		file_path = File.join("saves", "#{save_name}")
 		File.open(file_path, "w") { |f|
@@ -22,21 +23,24 @@ def new_game
 	game
 end
 
-game = new_game
+get "/play" do
+	redirect to "/reset" unless session[:game]
+	session[:guess] = params["guess"]
+	session[:guess].downcase! if session[:guess]
+	session[:game].guess_letter(session[:guess])
+	word = session[:game].fill_in_word
+	bad_guesses = session[:game].bad_guesses.join(", ")
+	turns_left = session[:game].guesses
+	erb :index, locals: { word: word, bad_guesses: bad_guesses,
+												turns_left: turns_left, game: session[:game] }
+end
 
 get "/" do
-	guess = params["guess"]
-	guess.downcase! if guess
-	game.guess_letter(guess)
-	word = game.fill_in_word
-	bad_guesses = game.bad_guesses.join(", ")
-	turns_left = game.guesses
-	erb :index, locals: { word: word, bad_guesses: bad_guesses,
-												turns_left: turns_left, game: game }
+	redirect to session[:game].nil? ? "/reset" : "/play"
 end
 
 get "/save" do
-	save game
+	save session[:game]
 	redirect to('/')
 end
 
@@ -58,7 +62,7 @@ get "/load/:id" do
 	redirect to("/")
 end
 
-get "/new_game" do
-	game = Hangman.new
-	redirect to('/')
+get "/reset" do
+	session[:game] = new_game
+	redirect to('/play')
 end
