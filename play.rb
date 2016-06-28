@@ -3,46 +3,8 @@ require 'sinatra/reloader' if development?
 require_relative './hangman'
 require 'yaml'
 private
-	
-	#loads a saved game
-	def load_game
-		print "Load game (y/n): "
-		load = gets.chomp.downcase[0]
-		return false if load == 'n'
-		return loader if load == 'y'
-		load_game if (load != 'n' || load != 'y')
-	end
 
-	#Prompts the user for a file to load
-	def loader_helper
-		if !(Dir.exists? "saves") || Dir["saves/*"].length == 0
-			puts "There are no save files...Starting game."
-			return false
-		end
-		saves = Dir.entries("saves")
-		saves.delete(".")
-		saves.delete("..")
-		puts "The save files are: #{saves.join(", ")}"
-		print "Type the save name: "
-		save = gets.chomp
-		unless saves.include? save
-			puts "That file doesn't exist. Try again.\n\n"
-			save = loader_helper 
-		end
-		save
-	end
-
-	#returns the saved object, or false if there are no saves
-	def loader
-		save = loader_helper
-		if save
-			File.open("saves/#{save}", 'r'){ |f|
-				return YAML.load(f)
-			} 
-		end
-		false
-	end
-
+private
 	#saves a game to ./saves
 	def save(game)
 		save_name = game.fill_in_word
