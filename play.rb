@@ -57,7 +57,7 @@ end
 
 get "/load/:id" do
 	File.open("saves/#{params["id"]}", 'r'){ |f|
-		game = YAML.load(f)
+		session[:game] = YAML.load(f)
 	}
 	redirect to("/")
 end
