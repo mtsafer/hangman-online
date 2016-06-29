@@ -1,13 +1,6 @@
-<h1>Hangman v2.0</h1>
-<h2>Now with bad ASCII art!</h2>
+<h1>Hangman</h1>
 <br>
 
-<p>Step 1: 'git clone git@github.com:mtsafer/Hangman.git'</p>
-<p>Step 2: 'cd Hangman'</p>
-<p>Step 3: 'ruby play.rb'</p>
-
-<p>The game will ask you if you want to load a game, enter 'y' or 'n' for yes or no respectively.</p>
+<p>You may enter a single character to make a guess. Only valid alphebetical charaters are accepted. If you choose to, you may save a game at any point, simply clicking the save button will save the game. To load a game, click the load button. You will be able to load any of the save files (including other people's). Each save file is labeled with the state of the game and a number in parenthesis, indicating the number of wrong guesses left.</p>
 <br>
-<h4>Type 'save' at any point to save.</h4>
-<p>Each turn you enter a letter that you think might be in the word. You will have 5 wrong guesses and the words are between 5 and 12 characters long.</p>
-<p>After the game has ended, the program will close.</p>
+<p>Each turn you enter a letter that you think might be in the word. You will have 5 wrong guesses and the words are between 5 and 12 characters long. There are no proper nouns.</p>
