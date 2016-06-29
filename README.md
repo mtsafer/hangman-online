@@ -1,4 +1,5 @@
 <h1>Hangman</h1>
+<h2><a href="https://stormy-shelf-89128.herokuapp.com">Play hangman here</a></h2>
 <br>
 
 <p>You may enter a single character to make a guess. Only valid alphebetical charaters are accepted. If you choose to, you may save a game at any point, simply clicking the save button will save the game. To load a game, click the load button. You will be able to load any of the save files (including other people's). Each save file is labeled with the state of the game and a number in parenthesis, indicating the number of wrong guesses left.</p>
